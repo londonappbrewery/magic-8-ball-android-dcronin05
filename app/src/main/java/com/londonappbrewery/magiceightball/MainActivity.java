@@ -1,5 +1,6 @@
 package com.londonappbrewery.magiceightball;
 
+import android.app.Application;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button rollButton = findViewById(R.id.askButton);
         final ImageView eightBallPicture = findViewById(R.id.eightBallPicture);
-        final int[] ballArray = {
+        final int[] ballArray = new int[] {
                 R.drawable.ball1,
                 R.drawable.ball2,
                 R.drawable.ball3,
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         final Random randomNumber = new Random();
 
-        rollButton.setOnClickListener(new View.OnClickListener() {
+        final View.OnClickListener buttonListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int answerNumber = randomNumber.nextInt(5);
@@ -44,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d("myMessage", "Applied drawable " + ballArray[answerNumber]);
             }
-        });
+        };
 
+        rollButton.setOnClickListener(buttonListener);
     }
 }
